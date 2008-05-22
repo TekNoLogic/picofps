@@ -39,7 +39,7 @@ function f:ADDON_LOADED(event, addon)
 	if FPSBlockDB and FPSBlockDB.profiles then FPSBlockDB = nil end
 	FPSBlockDB = FPSBlockDB or {}
 
-	block = LibStub:GetLibrary("tekBlock"):new("FPSBlock", FPSBlockDB)
+	LibStub:GetLibrary("tekBlock"):new("FPSBlock", FPSBlockDB)
 
 	f:UnregisterEvent("ADDON_LOADED")
 	f.ADDON_LOADED = nil
@@ -95,7 +95,7 @@ function dataobj.OnEnter(self)
 	GameTooltip:AddDoubleLine("FPS:", string_format("%.1f", fps), nil,nil,nil, r,g,b)
 
 	local _, _, lag = GetNetStats()
-	local r, g, b = ColorGradient(lag/1000, 1,0,0, 1,1,0, 0,1,0)
+	local r, g, b = ColorGradient(lag/1000, 0,1,0, 1,1,0, 1,0,0)
 	GameTooltip:AddDoubleLine("Lag:", lag.. " ms", nil,nil,nil, r,g,b)
 
 	local mem = collectgarbage("count")
