@@ -22,28 +22,7 @@ end
 -------------------------------------------
 
 local f = CreateFrame("frame")
-f:SetScript("OnEvent", function(self, event, ...) if self[event] then return self[event](self, event, ...) end end)
-f:RegisterEvent("ADDON_LOADED")
-
-local dataobj = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("FPSBlock")
-dataobj.text = "75.0 FPS"
-
-
----------------------------
---      Init/Enable      --
----------------------------
-
-function f:ADDON_LOADED(event, addon)
-	if addon ~= "FPSBlock" then return end
-
-	if FPSBlockDB and FPSBlockDB.profiles then FPSBlockDB = nil end
-	FPSBlockDB = FPSBlockDB or {}
-
-	LibStub:GetLibrary("tekBlock"):new("FPSBlock", FPSBlockDB)
-
-	f:UnregisterEvent("ADDON_LOADED")
-	f.ADDON_LOADED = nil
-end
+local dataobj = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("FPSBlock", {text = "75.0 FPS"})
 
 
 --------------------------------
