@@ -22,7 +22,7 @@ end
 -------------------------------------------
 
 local f = CreateFrame("frame")
-local dataobj = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("FPSBlock", {text = "75.0 FPS"})
+local dataobj = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("picoFPS", {text = "75.0 FPS"})
 
 
 --------------------------------
@@ -67,7 +67,7 @@ function dataobj.OnEnter(self)
 	GameTooltip:SetPoint(GetTipAnchor(self))
 	GameTooltip:ClearLines()
 
-	GameTooltip:AddLine("FPSBlock")
+	GameTooltip:AddLine("picoFPS")
 
 	local fps = GetFramerate()
 	local r, g, b = ColorGradient(fps/75, 1,0,0, 1,1,0, 0,1,0)
