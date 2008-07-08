@@ -6,6 +6,7 @@
 ## Version: Alpha
 ## X-Website: http://www.tekkub.net/
 ## X-Email: tekkub-wow@googlegroups.com
+## X-Category: Misc
 ## X-Credits: kergoth's PerfBlock
 
 ## LoadManagers: AddonLoader
@@ -14,5 +15,6 @@
 LibStub.lua
 CallbackHandler-1.0.lua
 LibDataBroker-1.1\LibDataBroker-1.1.lua
+tekKonfigAboutPanel.lua
 
 picoFPS.lua
