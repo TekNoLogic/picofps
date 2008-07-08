@@ -1,0 +1,10 @@
+picoFPS is a small "LibDataBroker":http://github.com/tekkub/libdatabroker-1-1 based info addon.
+It provides a simple FPS display, with a tiooltip that shows detailed performance statistics.
+
+<em> picoFPS does not provide it's own display, you will need a LDB-based display addon. </em>
+
+h2. Links
+
+<b>Visit "my site":http://www.tekkub.net/addons/picoFPS for more info.<br>
+Please report all bugs and feature requests to my "Google Code":http://code.google.com/p/tekkub-wow/issues/list?can=1&q=addon:picoFPS&sort=status+milestone&colspec=ID%20Type%20Status%20Addon%20Milestone%20Summary tracker<br>
+Please direct all feedback and questions to my "Google Groups":http://groups-beta.google.com/group/tekkub-wow mailinglist</b>
