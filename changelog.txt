@@ -1,0 +1,6 @@
+2.4.3.1-Beta
+    Add addon memory info
+    Add click-to-GC
+    Add about panel
+    Renaming to picoFPS
+
