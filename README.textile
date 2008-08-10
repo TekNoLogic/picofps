@@ -1,4 +1,4 @@
-picoFPS is a small "LibDataBroker":http://github.com/tekkub/libdatabroker-1-1 based info addon.
+picoFPS is a small "LibDataBroker":http://github.com/tekkub/libdatabroker-1-1/wikis based info addon.
 It provides a simple FPS display, with a tiooltip that shows detailed performance statistics.
 
 <em> picoFPS does not provide it's own display, you will need a LDB-based display addon. </em>
