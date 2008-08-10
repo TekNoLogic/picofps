@@ -3,7 +3,7 @@
 --      Are you local?      --
 ------------------------------
 
-local UPDATEPERIOD = 0.5
+local UPDATEPERIOD, MEMTHRESH = 0.5, 16
 local prevmem, elapsed, tipshown = collectgarbage("count"), 0.5
 local string_format, math_modf, GetNetStats, GetFramerate, collectgarbage = string.format, math.modf, GetNetStats, GetFramerate, collectgarbage
 
@@ -78,14 +78,32 @@ function dataobj.OnEnter(self)
 	local r, g, b = ColorGradient(lag/1000, 0,1,0, 1,1,0, 1,0,0)
 	GameTooltip:AddDoubleLine("Lag:", lag.. " ms", nil,nil,nil, r,g,b)
 
+	GameTooltip:AddLine(" ")
+
+	local addonmem = 0
+	UpdateAddOnMemoryUsage()
+	for i=1, GetNumAddOns() do
+		local mem = GetAddOnMemoryUsage(i)
+		addonmem = addonmem + mem
+		if mem > MEMTHRESH then
+			local name = GetAddOnInfo(i)
+			local memstr = mem > 1024 and string_format("%.1f MiB", mem/1024) or string_format("%.1f KiB", mem)
+			GameTooltip:AddDoubleLine(name, memstr, 1,1,1, r,g,b)
+		end
+	end
+	GameTooltip:AddDoubleLine("Addon memory:", string_format("%.2f MiB", addonmem/1024), nil,nil,nil, r,g,b)
+
 	local mem = collectgarbage("count")
 	local deltamem = mem - prevmem
 	prevmem = mem
 	local r, g, b = ColorGradient(mem/(60*1024), 0,1,0, 1,1,0, 1,0,0)
-	GameTooltip:AddDoubleLine("Memory:", string_format("%.2f MiB", mem/1024), nil,nil,nil, r,g,b)
+	GameTooltip:AddDoubleLine("Default UI memory:", string_format("%.2f MiB", (mem-addonmem)/1024), nil,nil,nil, r,g,b)
 
 	local r, g, b = ColorGradient(deltamem/15, 0,1,0, 1,1,0, 1,0,0)
 	GameTooltip:AddDoubleLine("Garbage churn:", string_format("%.2f KiB/sec", deltamem), nil,nil,nil, r,g,b)
+
+	GameTooltip:AddLine(" ")
+	GameTooltip:AddLine("Click to force garbage collection")
 
 	GameTooltip:Show()
 end
