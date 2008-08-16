@@ -1,3 +1,8 @@
+3.0.1.2-Beta
+    Add color gradient to addon list
+    Sort addon list by name
+    Increase addon memory threshold to 32 KiB
+
 2.4.3.1-Beta
     Add addon memory info
     Add click-to-GC
