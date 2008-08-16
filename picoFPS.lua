@@ -90,16 +90,18 @@ function dataobj.OnEnter(self)
 		local mem = GetAddOnMemoryUsage(name)
 		addonmem = addonmem + mem
 		if mem > MEMTHRESH then
+			local r, g, b = ColorGradient((mem - MEMTHRESH)/768, 0,1,0, 1,1,0, 1,0,0)
 			local memstr = mem > 1024 and string_format("%.1f MiB", mem/1024) or string_format("%.1f KiB", mem)
 			GameTooltip:AddDoubleLine(name, memstr, 1,1,1, r,g,b)
 		end
 	end
+	local r, g, b = ColorGradient(addonmem/(40*1024), 0,1,0, 1,1,0, 1,0,0)
 	GameTooltip:AddDoubleLine("Addon memory:", string_format("%.2f MiB", addonmem/1024), nil,nil,nil, r,g,b)
 
 	local mem = collectgarbage("count")
 	local deltamem = mem - prevmem
 	prevmem = mem
-	local r, g, b = ColorGradient(mem/(60*1024), 0,1,0, 1,1,0, 1,0,0)
+	local r, g, b = ColorGradient(mem/(20*1024), 0,1,0, 1,1,0, 1,0,0)
 	GameTooltip:AddDoubleLine("Default UI memory:", string_format("%.2f MiB", (mem-addonmem)/1024), nil,nil,nil, r,g,b)
 
 	local r, g, b = ColorGradient(deltamem/15, 0,1,0, 1,1,0, 1,0,0)
