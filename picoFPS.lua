@@ -7,6 +7,10 @@ local UPDATEPERIOD, MEMTHRESH = 0.5, 32
 local prevmem, elapsed, tipshown = collectgarbage("count"), 0.5
 local string_format, math_modf, GetNetStats, GetFramerate, collectgarbage = string.format, math.modf, GetNetStats, GetFramerate, collectgarbage
 
+local addons = {}
+for i=1,GetNumAddOns() do table.insert(addons, (GetAddOnInfo(i))) end
+table.sort(addons, function(a,b) return a and b and a:lower() < b:lower() end)
+
 
 local function ColorGradient(perc, r1, g1, b1, r2, g2, b2, r3, g3, b3)
 	if perc >= 1 then return r3, g3, b3 elseif perc <= 0 then return r1, g1, b1 end
@@ -82,11 +86,10 @@ function dataobj.OnEnter(self)
 
 	local addonmem = 0
 	UpdateAddOnMemoryUsage()
-	for i=1, GetNumAddOns() do
-		local mem = GetAddOnMemoryUsage(i)
+	for i,name in ipairs(addons) do
+		local mem = GetAddOnMemoryUsage(name)
 		addonmem = addonmem + mem
 		if mem > MEMTHRESH then
-			local name = GetAddOnInfo(i)
 			local memstr = mem > 1024 and string_format("%.1f MiB", mem/1024) or string_format("%.1f KiB", mem)
 			GameTooltip:AddDoubleLine(name, memstr, 1,1,1, r,g,b)
 		end
