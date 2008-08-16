@@ -3,7 +3,7 @@
 --      Are you local?      --
 ------------------------------
 
-local UPDATEPERIOD, MEMTHRESH = 0.5, 16
+local UPDATEPERIOD, MEMTHRESH = 0.5, 32
 local prevmem, elapsed, tipshown = collectgarbage("count"), 0.5
 local string_format, math_modf, GetNetStats, GetFramerate, collectgarbage = string.format, math.modf, GetNetStats, GetFramerate, collectgarbage
 
