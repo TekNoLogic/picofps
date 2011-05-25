@@ -11,6 +11,7 @@
 
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
+## X-LoadOn-InterfaceOptions: picoFPS
 
 LibStub.lua
 CallbackHandler-1.0.lua
